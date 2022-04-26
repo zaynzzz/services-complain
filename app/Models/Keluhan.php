@@ -47,11 +47,20 @@ class Keluhan extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function getEdit($id)
+    {
+        return $this->query("SELECT idkeluhan,keluhan.idteknisi,keluhan.idpelanggan,nama_pelanggan,keluhan,penyebab,tindakan,tgl_keluhan,keluhan.tgl_perbaikan,nama_teknisi FROM keluhan
+        JOIN `pelanggan` ON keluhan.idpelanggan=`pelanggan`.idpelanggan 
+        JOIN teknisi ON keluhan.idteknisi=teknisi.idteknisi Where idkeluhan='$id'")->getRow();
+    }
+
     public function getData()
     {
-        $query = $this->query('SELECT nama_pelanggan,keluhan,penyebab,tindakan,tgl_keluhan,tgl_perbaikan,nama_teknisi FROM keluhan
+        $query = $this->query("SELECT nama_pelanggan,keluhan,penyebab,tindakan,tgl_keluhan,keluhan.tgl_perbaikan,nama_teknisi FROM keluhan
         JOIN `pelanggan` ON keluhan.idpelanggan=`pelanggan`.idpelanggan 
-        JOIN teknisi ON keluhan.idteknisi=teknisi.idteknisi');
+        JOIN teknisi ON keluhan.idteknisi=teknisi.idteknisi
+        WHERE finished = 0");
 
         return $query->getResult();
     }

@@ -1,222 +1,118 @@
-<!--
-=========================================================
-* Soft UI Dashboard - v1.0.3
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard
-* Copyright 2021 <?= $conf['namaweb'] ?> (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-
-* Coded by <?= $conf['namaweb'] ?>
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="<?= base_url(); ?>/assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="<?= base_url(); ?>/assets/img/favicon.png">
-  <title>
-    Antzein | Registration
-  </title>
-  <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-  <!-- Nucleo Icons -->
-  <link href="<?= base_url(); ?>/assets/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="<?= base_url(); ?>/assets/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- Font Awesome Icons -->
-  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-  <link href="<?= base_url(); ?>/assets/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- CSS Files -->
-  <link id="pagestyle" href="<?= base_url(); ?>/assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <title>Login &mdash; Antzein Company</title>
+
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+  <!-- CSS Libraries -->
+  <link rel="stylesheet" href="<?= base_url(); ?>/node_modules/bootstrap-social/bootstrap-social.css">
+
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="<?= base_url(); ?>/assets/css/style.css">
+  <link rel="stylesheet" href="<?= base_url(); ?>/assets/css/components.css">
 </head>
 
-<body class="">
-  <div class="container position-sticky z-index-sticky top-0">
-    <div class="row">
-      <div class="col-12">
-        <!-- Navbar -->
-        <!-- <nav class="navbar navbar-expand-lg blur blur-rounded top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
-          <div class="container-fluid">
-            <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="<?= base_url(); ?>/pages/dashboard.html">
-              Soft UI Dashboard
-            </a>
-            <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon mt-2">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
-              </span>
-            </button>
-            <div class="collapse navbar-collapse" id="navigation">
-              <ul class="navbar-nav mx-auto">
-                <li class="nav-item">
-                  <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" href="<?= base_url(); ?>/pages/dashboard.html">
-                    <i class="fa fa-chart-pie opacity-6 text-dark me-1"></i>
-                    Dashboard
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link me-2" href="<?= base_url(); ?>/pages/profile.html">
-                    <i class="fa fa-user opacity-6 text-dark me-1"></i>
-                    Profile
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link me-2" href="<?= base_url(); ?>/pages/sign-up.html">
-                    <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
-                    Sign Up
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link me-2" href="<?= base_url(); ?>/pages/sign-in.html">
-                    <i class="fas fa-key opacity-6 text-dark me-1"></i>
-                    Sign In
-                  </a>
-                </li>
-              </ul>
-              <ul class="navbar-nav d-lg-block d-none">
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/product/soft-ui-dashboard" class="btn btn-sm btn-round mb-0 me-1 bg-gradient-dark">Free download</a>
-                </li>
-              </ul>
+<body>
+  <div id="app">
+    <section class="section">
+      <div class="d-flex flex-wrap align-items-stretch">
+        <div class="col-lg-4 col-md-6 col-12 order-lg-1 min-vh-100 order-2 bg-white">
+          <div class="p-4 m-3">
+            <img src="<?= base_url(); ?>/assets/img/stisla-fill.svg" alt="logo" width="80" class="shadow-light rounded-circle mb-5 mt-2">
+            <h4 class="text-dark font-weight-normal">Welcome to <span class="font-weight-bold">Antzein Company</span></h4>
+            <p class="text-muted">Before you get started, you must login or register if you don't already have an account.</p>
+            <?php if (!empty(session()->getFlashdata('error'))) : ?>
+              <div class="alert alert-light text-danger alert-dismissible fade show" role="alert">
+                </hr />
+                <?php echo session()->getFlashdata('error'); ?>
+              </div>
+            <?php endif; ?>
+            <form method="POST" action="<?= base_url('Login/processlogin'); ?>" class="needs-validation" novalidate="">
+              <div class="form-group">
+                <label for="email">Username</label>
+                <input id="username" type="text" class="form-control" name="username" tabindex="1" required autofocus>
+                <div class="invalid-feedback">
+                  Please fill in your Username
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="d-block">
+                  <label for="password" class="control-label">Password</label>
+                </div>
+                <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
+                <div class="invalid-feedback">
+                  please fill in your password
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
+                  <label class="custom-control-label" for="remember-me">Remember Me</label>
+                </div>
+              </div>
+
+              <div class="form-group text-right">
+                <a href="auth-forgot-password.html" class="float-left mt-3">
+                  Forgot Password?
+                </a>
+                <button type="submit" class="btn btn-primary btn-lg btn-icon icon-right" tabindex="4">
+                  Login
+                </button>
+              </div>
+
+              <div class="mt-5 text-center">
+                Don't have an account? <a href="<?= base_url('Login/regist'); ?>">Create new one</a>
+              </div>
+            </form>
+
+            <div class="text-center mt-5 text-small">
+              Copyright &copy; Your Company. Made with 💙 by Antzein Company
+              <div class="mt-2">
+                <a href="#">Privacy Policy</a>
+                <div class="bullet"></div>
+                <a href="#">Terms of Service</a>
+              </div>
             </div>
           </div>
-        </nav> -->
-        <!-- End Navbar -->
-      </div>
-    </div>
-  </div>
-  <main class="main-content  mt-0">
-    <section>
-      <div class="page-header min-vh-90">
-        <div class="container">
-          <div class="row">
-            <div class="col-xl-4 col-lg-12 col-md-6 d-flex flex-column mx-auto">
-              <div class="card card-plain mt-8">
-                <div class="card-header pb-0 text-left bg-transparent">
-                  <h3 class="font-weight-bolder text-info text-gradient">Login </h3>
-                  <p class="mb-0">Enter your email and password to sign in</p>
-                </div>
-                <div class="card-body">
-                  <?php if (!empty(session()->getFlashdata('error'))) : ?>
-                    <div class="alert alert-light text-danger alert-dismissible fade show" role="alert">
-                      </hr />
-                      <?php echo session()->getFlashdata('error'); ?>
-                    </div>
-                  <?php endif; ?>
-
-                  <form role="form" method="POST" action="<?= base_url('Login/processlogin/'); ?>">
-                    <label>Email</label>
-                    <div class="mb-3">
-                      <input type="Username" name='username' class="form-control" placeholder="Username" aria-label="Username" aria-describedby="Username-addon">
-                    </div>
-                    <label>Password</label>
-                    <div class="mb-3">
-                      <input type="password" class="form-control" name='password' placeholder="Password" aria-label="Password" aria-describedby="password-addon">
-                    </div>
-                    <div class="form-check form-switch">
-                    </div>
-                    <div class="text-center">
-                      <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Sign in</button>
-                    </div>
-                  </form>
-                </div>
-                <div class="card-footer text-center pt-0 px-lg-2 px-1">
-                  <p class="mb-4 text-sm mx-auto">
-                    Don't have an account?
-                    <a href="<?= base_url('Login/regist/'); ?>" class="text-info text-gradient font-weight-bold">Sign up</a>
-                  </p>
-                </div>
+        </div>
+        <div class="col-lg-8 col-12 order-lg-2 order-1 min-vh-100 background-walk-y position-relative overlay-gradient-bottom" data-background="<?= base_url(); ?>/assets/img/unsplash/login-bg.jpg">
+          <div class="absolute-bottom-left index-2">
+            <div class="text-light p-5 pb-2">
+              <div class="mb-5 pb-3">
+                <h1 class="mb-2 display-4 font-weight-bold">Good Morning</h1>
+                <h5 class="font-weight-normal text-muted-transparent">Bali, Indonesia</h5>
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="oblique position-absolute top-0 h-100 d-md-block d-none me-n8">
-                <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6" style="background-image:url('../assets/img/curved-images/curved6.jpg')"></div>
-              </div>
+              Photo by <a class="text-light bb" target="_blank" href="https://unsplash.com/photos/a8lTjWJJgLA">Justin Kauffman</a> on <a class="text-light bb" target="_blank" href="https://unsplash.com">Unsplash</a>
             </div>
           </div>
         </div>
       </div>
     </section>
-  </main>
-  <!-- -------- START FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
-  <!-- <footer class="footer py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 mb-4 mx-auto text-center">
-          <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-            Company
-          </a>
-          <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-            About Us
-          </a>
-          <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-            Team
-          </a>
-          <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-            Products
-          </a>
-          <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-            Blog
-          </a>
-          <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-            Pricing
-          </a>
-        </div>
-        <div class="col-lg-8 mx-auto text-center mb-4 mt-2">
-          <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
-            <span class="text-lg fab fa-dribbble"></span>
-          </a>
-          <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
-            <span class="text-lg fab fa-twitter"></span>
-          </a>
-          <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
-            <span class="text-lg fab fa-instagram"></span>
-          </a>
-          <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
-            <span class="text-lg fab fa-pinterest"></span>
-          </a>
-          <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
-            <span class="text-lg fab fa-github"></span>
-          </a>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-8 mx-auto text-center mt-1">
-          <p class="mb-0 text-secondary">
-            Copyright © <script>
-              document.write(new Date().getFullYear())
-            </script> Soft by <?= $conf['namaweb'] ?>.
-          </p>
-        </div>
-      </div>
-    </div>
-  </footer> -->
-  <!-- -------- END FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
-  <!--   Core JS Files   -->
-  <script src="<?= base_url(); ?>/assets/js/core/popper.min.js"></script>
-  <script src="<?= base_url(); ?>/assets/js/core/bootstrap.min.js"></script>
-  <script src="<?= base_url(); ?>/assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="<?= base_url(); ?>/assets/js/plugins/smooth-scrollbar.min.js"></script>
-  <script>
-    var win = navigator.platform.indexOf('Win') > -1;
-    if (win && document.querySelector('#sidenav-scrollbar')) {
-      var options = {
-        damping: '0.5'
-      }
-      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-    }
-  </script>
-  <!-- Github buttons -->
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="<?= base_url(); ?>/assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
+  </div>
+
+  <!-- General JS Scripts -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="<?= base_url(); ?>/assets/js/Antzein Company.js"></script>
+
+  <!-- JS Libraies -->
+
+  <!-- Template JS File -->
+  <script src="<?= base_url(); ?>/assets/js/scripts.js"></script>
+  <script src="<?= base_url(); ?>/assets/js/custom.js"></script>
+
+  <!-- Page Specific JS File -->
 </body>
 
 </html>

@@ -8,26 +8,28 @@ use Irsyadulibad\DataTables\DataTables;
 class Keluhan extends BaseController
 {
 
-    public function json()
+    public function editproses()
     {
-        return  DataTables::use('keluhan')
-            ->make(true);
-    }
-    public function getdata()
-    {
-        $sql =    $this->keluhan->query('SELECT * FROM keluhan')->getRow();
-        return json_encode($sql);
+        $id = $this->request->getVar('idkeluhan');
+        $idpelanggan = $this->request->getVar('idpelanggan');
+        $keluhan =  $this->request->getVar('keluhan');
+        $penyebab =  $this->request->getVar('penyebab');
+        $tindakan =  $this->request->getVar('tindakan');
+        $tgl_keluhan =  $this->request->getVar('tgl_keluhan');
+        $tgl_perbaikan =  $this->request->getVar('tgl_perbaikan');
+        $idteknisi =  $this->request->getVar('idteknisi');
+        $sql = db_connect()->query(
+            "UPDATE keluhan SET idpelanggan ='$idpelanggan',keluhan='$keluhan',penyebab='$penyebab',tindakan='$tindakan',
+        tgl_keluhan='$tgl_keluhan',tgl_perbaikan='$tgl_perbaikan',idteknisi='$idteknisi' WHERE idkeluhan=$id"
+        );
+        return redirect()->to('Keluhan');
     }
     public function edit($id)
     {
-        $sql =    $this->keluhan->query("SELECT idperbaikan,perbaikan,nama_pelanggan,keluhan,penyebab,tindakan,tgl_keluhan,keluhan.tgl_perbaikan,nama_teknisi FROM keluhan
-        JOIN `pelanggan` ON keluhan.idpelanggan=`pelanggan`.idpelanggan 
-        JOIN teknisi ON keluhan.idteknisi=teknisi.idteknisi
-        JOIN perbaikan ON keluhan.idkeluhan=perbaikan.idkeluhan where perbaikan.idperbaikan='$id'")->getRow();
+
+        $data['sql'] = $this->keluhan->getEdit($id);
         $data['contents'] = "Keluhan/edit";
-        dd($sql);
-        $data['edit'] = $sql;
-        $data['conf'] = $this->listing;
+        // $data['sql'] = $this->listing;
         return view('Layout/template', $data);
     }
     public function add()
@@ -42,7 +44,7 @@ class Keluhan extends BaseController
             'idteknisi' =>  $this->request->getVar('idteknisi'),
         ];
         $this->keluhan->insert($data);
-        return redirect()->back();
+        return redirect()->to('Keluhan');
     }
     public function index()
     {
@@ -50,5 +52,10 @@ class Keluhan extends BaseController
         $data['contents'] = "Keluhan/index";
         $data['keluhan'] = $this->keluhan->getData();
         return view('Layout/template', $data);
+    }
+    public function del($id)
+    {
+        $sql = db_connect()->query("DELETE from keluhan where idkeluhan='$id'");
+        return redirect()->back();
     }
 }

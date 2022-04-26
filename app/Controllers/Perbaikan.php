@@ -10,7 +10,7 @@ class Perbaikan extends BaseController
     {
         $data['conf'] = $this->listing;
         $data['contents'] = "perbaikan/index";
-        $data['keluhan'] = $this->keluhan->getData();
+        $data['perbaikan'] = $this->perbaikan->getData();
         return view('Layout/template', $data);
     }
 }

@@ -3,7 +3,7 @@
         <script src="https://code.jquery.com/jquery-3.5.1.js" type="text/javascript"></script>
         <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js" type="text/javascript"></script>
         <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js" type="text/javascript"></script>
-        <button class="addbtn btn btn-primary col-md-3">Add</button>
+        <?php if (session()->get('level') === "admin")?"":"";?>
 
         <div class="modal " id="tambah_keluhan" tabindex="-1" role="dialog" aria-labelleconny="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -140,8 +140,8 @@
                     <td><?= $row->tgl_perbaikan; ?></td>
                     <td><?= $row->nama_teknisi; ?></td>
                     <td>
-                        <a href="<?= base_url(); ?>/Keluhan/edit/<?= $row->idkeluhan; ?>" data-toggle="modal" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</a>
-                        <a href="<?= base_url(); ?>/Keluhan/del/<?= $row->idkeluhan; ?>" data-toggle="modal" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                        <a href="<?= base_url(); ?>/Keluhan/edit/<?= $row->idkeluhan; ?>">Edit</a>
+                        <a href="<?= base_url(); ?>/Keluhan/del/<?= $row->idkeluhan; ?>">Delete</a>
                     </td>
                 </tr>
             <?php
@@ -170,11 +170,3 @@
     });
 </script>
 </div>
-<!-- <script>
-    // $('#table').DataTable({
-    processing: true,
-        serverSide: true,
-        paging: true,
-
-    });
-</script> -->

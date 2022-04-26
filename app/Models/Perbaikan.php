@@ -39,6 +39,22 @@ class Perbaikan extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function getEdit($id)
+    {
+        return $this->query("SELECT * FROM perbaikan Where idperbaikan='$id'")->getResult();
+    }
+
+    public function getData()
+    {
+        $query = $this->query('SELECT perbaikan.finished,perbaikan,perbaikan.idkeluhan,nama_pelanggan,keluhan,penyebab,tindakan,tgl_keluhan,perbaikan.tgl_perbaikan,nama_teknisi FROM keluhan
+        JOIN `pelanggan` ON keluhan.idpelanggan=`pelanggan`.idpelanggan 
+        JOIN teknisi ON keluhan.idteknisi=teknisi.idteknisi 
+        JOIN perbaikan ON keluhan.idkeluhan = perbaikan.idkeluhan WHERE perbaikan.finished = 1');
+
+        return $query->getResult();
+    }
+
     public function count()
     {
         $query = $this->query('SELECT * FROM keluhan');
